@@ -50,7 +50,7 @@ const Footer = () => {
 
           {/* LeetCode Icon */}
           <a
-            href="https://leetcode.com/your-leetcode-username/"
+            href="https://leetcode.com/u/adchaudhari100/"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-transform transform hover:scale-110"

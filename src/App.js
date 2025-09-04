@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useMemo, useState, useEffect } from "react";
-import { motion,AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence,useMotionValue,useTransform,animate } from "framer-motion";
 import { Button } from "./components/ui/Button";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon ,Menu,X} from "lucide-react";
 import Footer from "./components/Footer";
-  //  import { Button } from "@/components/ui/button";
+//  import { Button } from "@/components/ui/button";
 // import { motion } from "framer-motion";
 import { ArrowDown, Code2, FolderOpen } from "lucide-react";
 // import { useProfile } from "@/context/ProfileContext";
@@ -34,19 +34,82 @@ const ProfileContext = createContext();
 const profileData = {
   name: "Adarsh Kumar Chaudhari",
   qualification: "MCA",
-  skills: ["C", "C++", "Java", "Python", "SQL", "PLSQL", "MERN Stack", "JavaScript", "HTML", "CSS"],
+  skills: [
+    "C", "C++", "Java", "Python", "SQL", "PLSQL",
+    "MERN Stack", "JavaScript", "HTML", "CSS"
+  ],
   projects: [
-    { title: "Get a Friend", desc: "Get a Friend is a pet adoption website that connects animal lovers with shelters and pet owners. The platform simplifies adopting dogs, cats, and other pets through secure profiles, filters, and real-time listings. With an intuitive interface, Get a Friend promotes responsible adoption and makes finding a loving companion easier.", link: "#" },
-    { title: "Auto Care", desc: "Auto Care is a vehicle rental website offering cars, bikes, and SUVs for affordable short-term and long-term rentals. With an easy booking system, secure payments, and flexible plans, Auto Care ensures hassle-free travel. Customers can explore vehicles, compare prices, and enjoy reliable service for business, leisure, or daily commuting.", link: "#" },
-    { title: "Weather Forecasting", desc: "Our weather forecasting website delivers accurate, real-time weather updates with advanced prediction models. Users can check hourly, daily, and weekly forecasts for temperature, rainfall, wind, and humidity. With interactive maps, location-based alerts, and a user-friendly interface, it ensures reliable climate insights for travel, agriculture, and everyday planning.", link: "#" },
+    {
+      title: "Get a Friend",
+      desc: "Get a Friend is a pet adoption website that connects animal lovers with shelters and pet owners. The platform simplifies adopting dogs, cats, and other pets through secure profiles, filters, and real-time listings. With an intuitive interface, Get a Friend promotes responsible adoption and makes finding a loving companion easier.",
+      link: "#",
+      image: "https://th.bing.com/th/id/OIP.E7NVi0JVmAtQu33adVRrXQHaHa?w=201&h=201&c=7&r=0&o=7&dpr=1.2&pid=1.7&rm=3",   // Add your image path
+      tech: "MERN Stack, Tailwind CSS, JWT Authentication",
+      purpose: "To provide a reliable and easy-to-use platform for pet adoption.",
+      scope: "Adding AI-based pet recommendations and integrating NGO/charity partnerships.",
+      bgGradient: "from-pink-500 via-red-400 to-yellow-400 dark:from-pink-700 dark:via-red-600 dark:to-yellow-500",
+      github:"https://github.com/Adarshch101/Pet-Adoption"
+
+    },
+    {
+      title: "Auto Care",
+      desc: "Auto Care is a vehicle rental website offering cars, bikes, and SUVs for affordable short-term and long-term rentals. With an easy booking system, secure payments, and flexible plans, Auto Care ensures hassle-free travel. Customers can explore vehicles, compare prices, and enjoy reliable service for business, leisure, or daily commuting.",
+      link: "#",
+      image: "https://th.bing.com/th/id/OIP.f5pSrxxnRNFepor4YejZ5wHaFj?w=238&h=180&c=7&r=0&o=5&dpr=1.2&pid=1.7",
+      tech: "React, Node.js, Express, MongoDB, Razorpay API",
+      purpose: "To simplify vehicle rentals with a secure and user-friendly platform.",
+      scope: "Integration with GPS tracking and subscription-based rental models.",
+      bgGradient: "from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-800 dark:via-purple-700 dark:to-pink-700",
+      github:"https://github.com/Adarshch101/vehicle-rental"
+
+    },
+    {
+      title: "Weather Forecasting",
+      desc: "Our weather forecasting website delivers accurate, real-time weather updates with advanced prediction models. Users can check hourly, daily, and weekly forecasts for temperature, rainfall, wind, and humidity. With interactive maps, location-based alerts, and a user-friendly interface, it ensures reliable climate insights for travel, agriculture, and everyday planning.",
+      link: "#",
+      image: "https://cdn.dribbble.com/userupload/4246709/file/original-7ec7d3e380f5f080b4d0fea878dc4375.jpg?compress=1&resize=1504x1128",
+      tech: "React, OpenWeatherMap API, Chart.js",
+      purpose: "To provide accurate and accessible weather updates to users worldwide.",
+      scope: "Adding AI-based prediction models and mobile app support.",
+      bgGradient: "from-green-400 via-emerald-500 to-teal-500 dark:from-green-700 dark:via-emerald-800 dark:to-teal-700",
+      github:""
+
+    },
   ],
   dsa: { platform: "LeetCode", lang: "C++", solved: 700 },
-  certifications: [
-    { name: "Problem Solving (C)", issuer: "HackerRank" },
-    { name: "JavaScript (Basic)", issuer: "HackerRank" },
-    { name: "SQL (Basic)", issuer: "HackerRank" },
+  certifications:[
+    {
+      name: "SQL(Basic)",
+      issuer: "HackerRank",
+      link: "https://www.hackerrank.com/certificates/iframe/9e4eadf7d2ef",
+    },
+    {
+      name: "SQL(Intermediate)",
+      issuer: "HackerRank",
+      link: "https://www.hackerrank.com/certificates/iframe/91396f260dc2",
+    },
+    {
+      name: "SQL(Advanced)",
+      issuer: "HackerRank",
+      link: "https://www.hackerrank.com/certificates/iframe/eff33bceecb9",
+    },
+    {
+      name: "JavaScript(Basic)",
+      issuer: "HackerRank",
+      link: "https://www.hackerrank.com/certificates/iframe/320d07b70fbb",
+    },
+    {
+      name: "JavaScript(Intermediate)",
+      issuer: "HackerRank",
+      link: "https://www.hackerrank.com/certificates/iframe/5e05cc9ed4fb",
+    },
+    {
+      name: "Problem Solving(Basic)",
+      issuer: "HackerRank",
+      link: "https://www.hackerrank.com/certificates/iframe/bb862a07b66b",
+    },
   ],
-  contact: { email: "adarsh@example.com", phone: "+91-XXXXXXXXXX" },
+  contact: { email: "adchaudhari100@gmail.com", phone: "+91-8707059003" },
 };
 
 const ProfileProvider = ({ children }) => {
@@ -58,9 +121,11 @@ const useProfile = () => useContext(ProfileContext);
 
 
 
+
 const HeaderNavbar = () => {
-  const sections = ["about", "skills", "projects", "dsa", "certs", "contact"];
+  const sections = ["about", "skills", "projects", "dsa", "certificates", "contact"];
   const [active, setActive] = useState("about");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const { darkMode, toggleTheme } = useTheme();
   const { profile } = useProfile();
@@ -86,6 +151,7 @@ const HeaderNavbar = () => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
+      setMenuOpen(false); // close menu after click
     }
   };
 
@@ -98,12 +164,12 @@ const HeaderNavbar = () => {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         {/* Left - Profile Name */}
-        <h1 className="text-2xl font-bold tracking-tight text-gray-100">
+        {/* <h1 className="text-3xl font-bold tracking-tight text-gray-100">
           {profile.name}
-        </h1>
+        </h1> */}
 
-        {/* Middle - Navbar */}
-        <nav className="flex space-x-6">
+        {/* Middle - Navbar (Desktop/Tablet) */}
+        <nav className="hidden md:flex space-x-6 text-xl">
           {sections.map((s) => (
             <button
               key={s}
@@ -119,18 +185,74 @@ const HeaderNavbar = () => {
           ))}
         </nav>
 
-        {/* Right - Theme Toggle */}
-        <Button
-          onClick={toggleTheme}
-          variant="outline"
-          className="rounded-full p-2 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-        >
-          {darkMode ? <Sun className="text-yellow-400" /> : <Moon className="text-blue-500" />}
-        </Button>
+        {/* Right - Theme Toggle & Mobile Menu Button */}
+        <div className="flex items-center space-x-4">
+          <Button
+            onClick={toggleTheme}
+            variant="outline"
+            className="rounded-full p-2 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+          >
+            {darkMode ? (
+              <Sun className="text-yellow-400" />
+            ) : (
+              <Moon className="text-blue-500" />
+            )}
+          </Button>
+
+          {/* Mobile Hamburger */}
+          <button
+            className="md:hidden p-2 text-gray-300 hover:text-pink-400"
+            onClick={() => setMenuOpen(true)}
+          >
+            <Menu size={28} />
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Sidebar Menu */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-50 flex">
+          {/* Sidebar */}
+          <div className="w-64 bg-gray-900 text-white p-6 space-y-6 shadow-2xl transform transition-transform duration-300">
+            <div className="flex justify-between items-center">
+              <h2 className="text-xl font-bold">{profile.name}</h2>
+              <button
+                className="p-2 text-gray-400 hover:text-pink-400"
+                onClick={() => setMenuOpen(false)}
+              >
+                <X size={28} />
+              </button>
+            </div>
+
+            <nav className="flex flex-col space-y-4 text-lg"> 
+              {sections.map((s) => (
+                <button
+                  key={s}
+                  onClick={() => scrollToSection(s)}
+                  className={`capitalize text-left ${
+                    active === s
+                      ? "text-pink-400 underline"
+                      : "text-gray-300 hover:text-pink-300"
+                  }`}
+                >
+                  {s}
+                </button>
+              ))}
+            </nav>
+          </div>
+
+          {/* Overlay */}
+          <div
+            className="flex-1 bg-black/50"
+            onClick={() => setMenuOpen(false)}
+          />
+        </div>
+      )}
     </header>
   );
 };
+
+
 
 
 
@@ -171,9 +293,9 @@ const Hero = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="max-w-2xl mx-auto text-lg text-gray-400 mb-10 leading-relaxed"
         >
-          Skilled in <span className="text-pink-400 font-semibold">C, C++, Java, Python, SQL, PLSQL, MERN Stack, JavaScript, HTML, CSS</span>.  
-          Experienced in building impactful projects like <span className="text-pink-400">Pet Adoption System</span>,  
-          <span className="text-pink-400"> Vehicle Rental System</span>, and a <span className="text-pink-400">Weather Forecasting App</span>.  
+          Skilled in <span className="text-pink-400 font-semibold">C, C++, Java, Python, SQL, PLSQL, MERN Stack, JavaScript, HTML, CSS</span>.
+          Experienced in building impactful projects like <span className="text-pink-400">Pet Adoption System</span>,
+          <span className="text-pink-400"> Vehicle Rental System</span>, and a <span className="text-pink-400">Weather Forecasting App</span>.
           Passionate about <span className="text-pink-400">DSA</span> and creating innovative solutions.
         </motion.p>
 
@@ -220,10 +342,6 @@ const Hero = () => {
 
 
 
-// --- Sections (About, Skills, Projects, DSA, Certifications, Contact) remain unchanged ---
-
-// import { motion } from "framer-motion";
-
 const About = () => {
   const { profile } = useProfile();
   return (
@@ -250,7 +368,7 @@ const About = () => {
         </p>
 
         <ul className="list-disc ml-6 mt-4 space-y-2 text-base text-gray-700 dark:text-gray-300">
-          <li>  
+          <li>
             Solving DSA on {profile.dsa.platform} in {profile.dsa.lang} —{" "}
             <span className="font-semibold">{profile.dsa.solved}+ problems</span>.
           </li>
@@ -264,9 +382,6 @@ const About = () => {
 
 
 
-// (Skills, Projects, DSA, Certifications, Contact components remain the same)
-
-// import { motion } from "framer-motion";
 
 const Skills = () => {
   const { profile } = useProfile();
@@ -282,6 +397,29 @@ const Skills = () => {
     "bg-gradient-to-r from-teal-400 to-green-500 text-white",
     "bg-gradient-to-r from-indigo-400 to-violet-600 text-white",
   ];
+
+  // 🎬 Motion variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15, // delay each skill
+        delayChildren: 0.2,    // start after container fade
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, scale: 0.5, y: 40, rotate: -10 },
+    show: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      rotate: 0,
+      transition: { type: "spring", stiffness: 100, damping: 12 },
+    },
+  };
 
   return (
     <section id="skills" className="scroll-mt-20 px-[50px] my-10">
@@ -299,11 +437,19 @@ const Skills = () => {
           Skills
         </h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        {/* Animate container with stagger */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6"
+        >
           {profile.skills.map((skill, idx) => (
             <motion.div
               key={idx}
-              whileHover={{ scale: 1.1, rotate: 1 }}
+              variants={item}
+              whileHover={{ scale: 1.15, rotate: 3 }}
               className={`p-4 rounded-xl shadow-md text-center font-medium 
                           hover:shadow-xl transition transform hover:-translate-y-1
                           ${bgStyles[idx % bgStyles.length]}`}
@@ -311,7 +457,7 @@ const Skills = () => {
               {skill}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );
@@ -322,79 +468,175 @@ const Skills = () => {
 
 
 
+
+
 const Projects = () => {
   const { profile } = useProfile();
   const [current, setCurrent] = useState(0);
+  const [showDetails, setShowDetails] = useState(false);
 
-  // Auto-slide every 7 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % profile.projects.length);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, [profile.projects.length]);
+  const nextProject = () => {
+    setCurrent((prev) => (prev + 1) % profile.projects.length);
+  };
+
+  const prevProject = () => {
+    setCurrent((prev) =>
+      prev === 0 ? profile.projects.length - 1 : prev - 1
+    );
+  };
+
+  const currentProject = profile.projects[current];
 
   return (
     <section id="projects" className="scroll-mt-20 px-[50px] my-12">
-      <div className="max-w-7xl mx-auto bg-white/80 dark:bg-gray-800/80 
-                      p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.25)] 
-                      hover:shadow-[0_8px_40px_rgb(236,72,153,0.4)] 
-                      transition-all duration-300">
-        
+      <div
+        className="max-w-7xl mx-auto bg-white/80 dark:bg-gray-800/80 
+        p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.25)] 
+        hover:shadow-[0_8px_40px_rgb(236,72,153,0.4)] 
+        transition-all duration-300"
+      >
         <h2 className="text-3xl font-bold mb-8 border-b-4 border-pink-500 inline-block pb-2">
           Projects
         </h2>
 
-        <div className="relative flex items-center justify-center overflow-hidden h-[450px]">
-          {profile.projects.map((project, idx) => {
-            let position = "hidden";
-            if (idx === current) position = "center";
-            else if (idx === (current - 1 + profile.projects.length) % profile.projects.length) position = "left";
-            else if (idx === (current + 1) % profile.projects.length) position = "right";
+        {/* Project Card */}
+        <div className="relative flex flex-col items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, x: 200 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -200 }}
+              transition={{ duration: 0.5 }}
+              className="w-[420px] md:w-[500px] lg:w-[580px] h-[500px]
+        bg-white/85 dark:bg-gray-700/80 p-6 rounded-2xl shadow-xl 
+        border-l-4 border-transparent hover:border-pink-400 flex flex-col 
+        justify-between transition-all duration-500"
+            >
+              {/* Project Image with Title Overlay */}
+              <div className="relative h-56 w-full mb-4">
+                <img
+                  src={currentProject.image}
+                  alt={currentProject.title}
+                  className="h-full w-full object-cover rounded-lg"
+                />
+                <div className="absolute top-0 left-0 w-full bg-black/50 text-center py-2 rounded-t-lg">
+                  <h3 className="text-xl md:text-2xl font-bold text-white">
+                    {currentProject.title}
+                  </h3>
+                </div>
+              </div>
 
-            return (
-              <AnimatePresence key={idx}>
-                {position !== "hidden" && (
-                  <motion.div
-                    initial={{ opacity: 0, x: position === "left" ? -400 : 400, scale: 0.8 }}
-                    animate={{
-                      opacity: position === "center" ? 1 : 0.5,
-                      x: position === "center" ? 0 : position === "left" ? -350 : 350,
-                      scale: position === "center" ? 1 : 0.85,
-                    }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 1, ease: "easeInOut" }}
-                    className={`absolute w-[420px] md:w-[500px] lg:w-[580px] h-[400px]
-                                bg-white/85 dark:bg-gray-700/80 p-8 rounded-2xl shadow-xl 
-                                border-l-4 border-transparent hover:border-pink-400 flex flex-col 
-                                justify-between transition-all duration-500
-                                ${position !== "center" ? "blur-sm" : ""}`}
-                  >
-                    <div>
-                      <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
-                        {project.title}
-                      </h3>
-                      <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm md:text-base overflow-hidden">
-                        {project.desc}
-                      </p>
-                    </div>
-                    {position === "center" && (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-6 inline-block text-base font-semibold text-pink-600 dark:text-pink-400 hover:underline"
-                      >
-                        View details →
-                      </a>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            );
-          })}
+              {/* Trimmed description */}
+              <p className="text-gray-700 dark:text-gray-300 text-sm md:text-base">
+                {currentProject.desc.split(" ").slice(0, 20).join(" ")}...
+              </p>
+
+              <div className="flex justify-between items-center mt-6">
+                <button
+                  onClick={() => setShowDetails(true)}
+                  className="text-base font-semibold text-pink-600 dark:text-pink-400 hover:underline"
+                >
+                  View details →
+                </button>
+
+                {/* View Source Button */}
+                <a
+                  href={currentProject.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 bg-gray-800 text-white rounded-lg shadow hover:bg-gray-900"
+                >
+                  View Source
+                </a>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Navigation Buttons */}
+          <div className="flex justify-between w-full max-w-[580px] mt-6">
+            <button
+              onClick={prevProject}
+              className="px-4 py-2 bg-pink-500 text-white rounded-lg shadow hover:bg-pink-600"
+            >
+              ← Previous
+            </button>
+            <button
+              onClick={nextProject}
+              className="px-4 py-2 bg-pink-500 text-white rounded-lg shadow hover:bg-pink-600"
+            >
+              Next →
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Modal for Details */}
+      <AnimatePresence>
+        {showDetails && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              transition={{ duration: 0.4 }}
+              className={`p-8 rounded-2xl shadow-2xl w-[95%] md:w-[750px] max-h-[90vh] 
+                          overflow-y-auto transition-colors duration-500 
+                          bg-gradient-to-r ${currentProject.bgGradient}`}
+            >
+              {/* Project Image */}
+              <div className="w-full h-60 mb-6">
+                <img
+                  src={currentProject.image}
+                  alt={currentProject.title}
+                  className="h-full w-full object-cover rounded-xl shadow-lg"
+                />
+              </div>
+
+              <h3 className="text-3xl font-extrabold mb-4 text-center">
+                {currentProject.title}
+              </h3>
+
+              <p className="mb-3">
+                <strong>Description:</strong> {currentProject.desc}
+              </p>
+              <p className="mb-3">
+                <strong>Technologies:</strong> {currentProject.tech}
+              </p>
+              <p className="mb-3">
+                <strong>Purpose:</strong> {currentProject.purpose}
+              </p>
+              <p className="mb-3">
+                <strong>Future Scope:</strong> {currentProject.scope}
+              </p>
+
+              <div className="flex justify-between mt-6">
+                {/* Source Code Button in Modal */}
+                <a
+                  href={currentProject.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2 bg-gray-800 text-white rounded-lg shadow hover:bg-gray-900"
+                >
+                  View Source
+                </a>
+
+                <button
+                  onClick={() => setShowDetails(false)}
+                  className="px-5 py-2 bg-pink-600 text-white rounded-lg shadow hover:bg-pink-700"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
@@ -402,10 +644,24 @@ const Projects = () => {
 
 
 
-// import { motion } from "framer-motion";
+
+
 
 const DSA = () => {
   const { profile } = useProfile();
+
+  // 🎯 Motion value for the counter
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.floor(latest));
+
+  useEffect(() => {
+    const controls = animate(count, profile.dsa.solved, {
+      duration: 3.2,
+      ease: "easeOut",
+    });
+    return controls.stop;
+  }, [profile.dsa.solved, count]);
+
   return (
     <section id="dsa" className="scroll-mt-20 px-[50px] my-10">
       <motion.div
@@ -415,7 +671,6 @@ const DSA = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="max-w-6xl mx-auto bg-white/80 dark:bg-gray-800/80 
                    p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.25)] 
-                   hover:shadow-[0_8px_40px_rgb(45,212,191,0.4)] 
                    transition-all duration-300"
       >
         <h2 className="text-3xl font-bold mb-6 border-b-4 border-teal-500 inline-block pb-2">
@@ -429,14 +684,16 @@ const DSA = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="p-6 bg-white/70 dark:bg-gray-800/70 
-                       rounded-2xl shadow-md hover:shadow-xl 
+            className="p-6 bg-gradient-to-r from-teal-100 via-teal-200 to-teal-300 
+                       dark:from-teal-900 dark:via-teal-800 dark:to-teal-700
+                       rounded-2xl shadow-lg hover:shadow-[0_8px_35px_rgb(20,184,166,0.6)] 
                        transition text-center"
           >
-            <div className="text-4xl font-bold text-teal-500">
-              {profile.dsa.solved}+
-            </div>
-            <div className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+            <motion.div className="text-5xl font-extrabold text-teal-800 dark:text-teal-300 tracking-widest">
+              <motion.span>{rounded}</motion.span>+
+            </motion.div>
+
+            <div className="mt-3 text-sm text-gray-700 dark:text-gray-200">
               Problems solved on{" "}
               <span className="font-semibold">{profile.dsa.platform}</span> (
               {profile.dsa.lang})
@@ -449,22 +706,23 @@ const DSA = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="p-6 bg-white/70 dark:bg-gray-800/70 
-                       rounded-2xl shadow-md hover:shadow-xl 
-                       transition md:col-span-2"
+            className="p-6 bg-gradient-to-br from-purple-100 via-indigo-200 to-indigo-300 
+                       dark:from-purple-900 dark:via-indigo-800 dark:to-indigo-700
+                       rounded-2xl shadow-lg hover:shadow-[0_8px_35px_rgb(99,102,241,0.6)] 
+                       transition"
           >
-            <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            <div className="text-sm font-medium text-gray-800 dark:text-gray-200">
               Focus Areas
             </div>
             <div className="mt-3 flex flex-wrap gap-2">
               {["DP", "Graphs", "Trees", "Greedy", "Two Pointers", "Binary Search"].map(
-                (t, idx) => (
+                (t) => (
                   <motion.span
                     key={t}
                     whileHover={{ scale: 1.1 }}
                     className="px-3 py-1 rounded-full text-sm 
-                               bg-teal-100 text-teal-700 
-                               dark:bg-teal-900/40 dark:text-teal-200"
+                               bg-white/70 text-gray-800 shadow-sm
+                               dark:bg-gray-900/40 dark:text-gray-100"
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     {t}
@@ -473,6 +731,36 @@ const DSA = () => {
               )}
             </div>
           </motion.div>
+
+          {/* LeetCode Profile */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="p-6 bg-gradient-to-r from-yellow-200 via-amber-300 to-yellow-400 
+                       dark:from-yellow-600 dark:via-amber-700 dark:to-yellow-800
+                       rounded-2xl shadow-lg hover:shadow-[0_8px_35px_rgb(245,158,11,0.6)] 
+                       transition flex flex-col items-center justify-center text-center"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png"
+              alt="LeetCode"
+              className="h-12 mb-4 dark:invert"
+            />
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              My LeetCode Profile
+            </h3>
+            <a
+              href="https://leetcode.com/u/adchaudhari100/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-block text-sm font-semibold px-4 py-2 rounded-lg 
+                         text-white bg-teal-600 hover:bg-teal-700 transition shadow-md"
+            >
+              View Profile →
+            </a>
+          </motion.div>
         </div>
       </motion.div>
     </section>
@@ -480,10 +768,10 @@ const DSA = () => {
 };
 
 
-// import { motion } from "framer-motion";
 
 const Certifications = () => {
   const { profile } = useProfile();
+
   return (
     <section id="certs" className="scroll-mt-20 px-[50px] my-10">
       <motion.div
@@ -500,6 +788,7 @@ const Certifications = () => {
           Certifications
         </h2>
 
+        {/* Grid of Certifications */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {profile.certifications.map((c, i) => (
             <motion.div
@@ -511,14 +800,28 @@ const Certifications = () => {
               whileHover={{ scale: 1.05 }}
               className="p-6 bg-white/70 dark:bg-gray-800/70 
                          rounded-2xl shadow-md hover:shadow-xl 
-                         transition"
+                         transition flex flex-col justify-between"
             >
-              <div className="font-semibold text-lg text-gray-900 dark:text-white">
-                {c.name}
+              <div>
+                <div className="font-semibold text-lg text-gray-900 dark:text-white">
+                  {c.name}
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                  {c.issuer}
+                </div>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                {c.issuer}
-              </div>
+
+              {/* View Certificate Button */}
+              <a
+                href={c.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-block text-sm font-semibold px-4 py-2 rounded-lg 
+                           text-amber-600 dark:text-amber-400 border border-amber-400 
+                           hover:bg-amber-500 hover:text-white transition"
+              >
+                View Certificate →
+              </a>
             </motion.div>
           ))}
         </div>
@@ -528,7 +831,8 @@ const Certifications = () => {
 };
 
 
-// import { motion } from "framer-motion";
+
+
 
 const Contact = () => {
   const { profile } = useProfile();
@@ -582,14 +886,14 @@ const Portfolio = () => {
   return (
     <AppProviders>
       <HeaderNavbar />
-      <Hero/>
+      <Hero />
       <About />
       <Skills />
       <Projects />
       <DSA />
       <Certifications />
       <Contact />
-      <Footer/>
+      <Footer />
     </AppProviders>
   );
 };
