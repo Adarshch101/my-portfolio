@@ -164,9 +164,9 @@ const HeaderNavbar = () => {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         {/* Left - Profile Name */}
-        {/* <h1 className="text-3xl font-bold tracking-tight text-gray-100">
+        <h1 className="text-3xl font-bold tracking-tight text-gray-100">
           {profile.name}
-        </h1> */}
+        </h1>
 
         {/* Middle - Navbar (Desktop/Tablet) */}
         <nav className="hidden md:flex space-x-6 text-xl">
