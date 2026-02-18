@@ -2,8 +2,8 @@ export const profileData = {
   name: "Adarsh Kumar Chaudhari",
   qualification: "MCA",
   skills: [
-    "C", "C++", "Java", "Python", "SQL", "PLSQL",
-    "MERN Stack", "JavaScript", "HTML", "CSS"
+    "C", "C++", "SQL", "PLSQL",
+    "MERN Stack", "JavaScript", "HTML", "CSS","Tailwind css","Git","GitHub","MongoDB","ReactJs","NodeJs","ExpressJs","PostMan","MySQL","Problem Solving"
   ],
   projects: [
     {
